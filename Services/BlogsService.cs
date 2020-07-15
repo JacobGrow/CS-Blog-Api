@@ -27,12 +27,10 @@ namespace CS_BLOG.Services
 
     internal Blog Create(Blog newBlog)
     {
-      int id = _repo.Create(newBlog);
-      newBlog.Id = id;
-      return newBlog;
+      return _repo.Create(newBlog);
     }
 
-    public Blog Edit(Blog editBlog)
+    internal Blog Edit(Blog editBlog)
     {
       Blog original = Get(editBlog.Id);
       original.Title = editBlog.Title.Length > 0 ? editBlog.Title : original.Title;
