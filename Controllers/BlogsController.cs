@@ -9,7 +9,7 @@ namespace CS_BLOG.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BlogsController :ControllerBase
+    public class BlogsController : ControllerBase
     {
         private readonly BlogsService _service;
 
@@ -33,12 +33,12 @@ namespace CS_BLOG.Controllers
         }
 
         //GetById
-        [HttpGet("{blogId}")]
-        public ActionResult<Blog> Get(int blogId)
+        [HttpGet("{id}")]
+        public ActionResult<Blog> Get(int id)
         {
               try
             {
-                return Ok(_service.Get(blogId));
+                return Ok(_service.Get(id));
             }
             catch (Exception e)
             {
@@ -48,11 +48,11 @@ namespace CS_BLOG.Controllers
 
         //Post
         [HttpPost]
-        public ActionResult<Blog> Post([FromBody] Blog newBlog)
+        public ActionResult<Blog> Post([FromBody] Blog newData)
         {
               try
             {
-                return Ok(_service.Create(newBlog));
+                return Ok(_service.Create(newData));
             }
             catch (Exception e)
             {
@@ -62,12 +62,12 @@ namespace CS_BLOG.Controllers
 
         //Put
         [HttpPut("{id}")]
-        public ActionResult<Blog> Edit([FromBody] Blog newBlog, int id)
+        public ActionResult<Blog> Edit([FromBody] Blog update, int id)
         {
               try
             {
-                newBlog.Id = id;
-                return Ok(_service.Edit(newBlog));
+                update.Id = id;
+                return Ok(_service.Edit(update));
             }
             catch (Exception e)
             {
