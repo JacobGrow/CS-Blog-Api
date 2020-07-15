@@ -18,9 +18,9 @@ namespace CS_BLOG.Services
       return _repo.Get();
     }
 
-    public Blog Get(int blogId)
+    public Blog Get(int id)
     {
-      Blog exists = _repo.GetById(blogId);
+      Blog exists = _repo.GetById(id);
       if(exists == null) { throw new Exception ("Invalid Id partner"); }
       return exists;
     }
@@ -36,7 +36,7 @@ namespace CS_BLOG.Services
     {
       Blog original = Get(editBlog.Id);
       original.Title = editBlog.Title.Length > 0 ? editBlog.Title : original.Title;
-      original.Description = editBlog.Description.Length > 0 ? editBlog.Description : original.Description;
+      original.Body = editBlog.Body.Length > 0 ? editBlog.Body : original.Body;
       return _repo.Edit(original);
 
     }

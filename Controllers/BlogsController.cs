@@ -13,9 +13,12 @@ namespace CS_BLOG.Controllers
     {
         private readonly BlogsService _service;
 
-        public BlogsController(BlogsService service)
+        private readonly CommentsService _cs;
+
+        public BlogsController(BlogsService service, CommentsService cs)
         {
             _service = service;
+            _cs = cs;
         }
 
         //Get
@@ -39,6 +42,20 @@ namespace CS_BLOG.Controllers
               try
             {
                 return Ok(_service.Get(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        //GetCommentsbyBlogId
+        [HttpGet("{id}/comments")]
+        public ActionResult<IEnumerable<Comment>> GetCommentsByBlogId(int id)
+        {
+              try
+            {
+                return Ok(_cs.GetByBlogId(id));
             }
             catch (Exception e)
             {
