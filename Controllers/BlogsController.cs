@@ -66,6 +66,7 @@ namespace CS_BLOG.Controllers
         {
               try
             {
+                newBlog.Id = id;
                 return Ok(_service.Edit(newBlog));
             }
             catch (Exception e)
